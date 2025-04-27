@@ -438,7 +438,7 @@ def safetensors_weights_iterator(
             disable=not enable_tqdm(use_tqdm_on_load),
             bar_format=_BAR_FORMAT,
     ):
-        with safe_open(st_file, framework="pt") as f:
+        with safe_open(st_file, framework="pt", **device=device**) as f:
             for name in f.keys():  # noqa: SIM118
                 param = f.get_tensor(name)
                 yield name, param
